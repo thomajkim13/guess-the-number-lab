@@ -4,24 +4,40 @@ const game = {
   smallestNum: 1,
   secretNum: null,
   prevGuesses: [],
-  
+  getGuess: function() {
+    let guess;
+    while(isNaN(guess) || guess<this.smallestNum || guess>this.biggestNum ) {
+    guess = parseInt(prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}`));
+    }  
+    return guess
+  },
   play: function() {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
     // Task number 4    
-   
-  },
-  //Task number 2 and 3
-  getGuess: function() {
-    let guess;
-    guess = parseInt(prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}`));  
-    while(isNaN(guess) || guess<this.smallestNum || guess>this.biggestNum );
-    return guess;
-  },
-  //Task number 5
+    let newGuess;
+    do {
+      newGuess = this.getGuess()
+      this.prevGuesses.push(newGuess)
+    } while(true)
 
+  },
+  render: function() {
+    let guessed = this.prevGuesses.pop()
+    this.prevGuesses.push(guessed)
+    console.log(guessed)
+    if(guessed === this.secretNum) {
+      alert(`Congrats! You guessed the number in ${this.prevGuesses.length} guesses!`)
+    } if(guessed > this.secretNum) {
+      alert(`Your guess is too high Previous Guesses ${this.prevGuesses.join(', ')}`)
+    } if(guessed < this.secretNum) {
+      alert(`Your guess is too low Previous Guesses ${this.prevGuesses.join(', ')}`)
+    }
+  }
 
   }
+
+  game.play()
   
 
 
