@@ -14,11 +14,11 @@ const game = {
   play: function() {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
-    // Task number 4    
     let newGuess;
     do {
       newGuess = this.getGuess()
       this.prevGuesses.push(newGuess)
+      this.render
     } while(true)
 
   },
