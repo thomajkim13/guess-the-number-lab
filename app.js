@@ -18,7 +18,7 @@ const game = {
     do {
       newGuess = this.getGuess()
       this.prevGuesses.push(newGuess)
-      this.render
+      this.render()
     } while(true)
 
   },
